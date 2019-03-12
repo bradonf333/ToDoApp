@@ -27,7 +27,8 @@ namespace ToDoListWebAPI.Services.ToDo
       where T : class
     {
       var connectionString = _configuration.GetConnectionString("MongoConnection");
-      var table = toDoEntity.TableName;
+      var table = "todoobject";
+      //var table = toDoEntity.TableName;
       var userId = toDoEntity.UserId;
       var title = toDoEntity.Title;
       var deletedObject = new DeleteToDoObjectResponse();

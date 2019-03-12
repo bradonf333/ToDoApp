@@ -16,7 +16,6 @@ namespace ToDoListWebAPI.Services
   {
     private readonly IDbOperations<ToDoEntity> _userDbOperations;
     private readonly ILogger<MongoDbActionService> _logger;
-    private MongoClient _client;
     private IMongoDatabase _db;
 
     public MongoDbActionService(IOptions<ToDoConfig> config, ILogger<MongoDbActionService> logger, IDbOperations<ToDoEntity> userDbOperations)
@@ -44,27 +43,16 @@ namespace ToDoListWebAPI.Services
       }
 
       // Get the newly added ToDo
-      var entity = _userDbOperations.GetAsync(e => e.UserId == e.UserId && e.Title == e.Title);
+      var result = await _userDbOperations.GetAsync(e => e.UserId == todo.UserId && e.Title == todo.Title).ConfigureAwait(false);
 
-      return entity as T;
+      return result as T;
     }
 
-    public async Task<T> Read<T>(string connectionString, string table, string userId, string title)
-      where T : class
+    public async Task<ToDoEntity> Read(string userId, string title)
     {
-      var client = new MongoClient(connectionString);
-      var database = client.GetDatabase(table);
-
-      // No ToDoEntity here, so using the Enum.
-      var collectionName = CollectionName.todo.ToString();
-      var collection = database.GetCollection<ToDoEntity>(collectionName);
-
-      var filter = Builders<ToDoEntity>.Filter.Eq("UserId", userId) 
-                   & Builders<ToDoEntity>.Filter.Eq("Title", title);
-
       try
       {
-        var result = await collection.FindAsync<T>(filter).Result.FirstAsync();
+        var result = await _userDbOperations.GetAsync(e => e.UserId == userId && e.Title == title).ConfigureAwait(false);
         return result;
       }
       catch (Exception e)

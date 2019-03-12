@@ -28,7 +28,6 @@ namespace ToDoListWebAPI.Services.ToDo
     {
       ToDoEntity result = null;
 
-
       try
       {
         result = await _dBInterface.CreateAsync<ToDoEntity>(toDoEntity);

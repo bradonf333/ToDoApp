@@ -42,11 +42,11 @@ namespace ToDoListWebAPI.Services.ToDo
         // Get the newly updated ToDoObject
         if (!string.IsNullOrEmpty(newTitle))
         {
-          updatedEntity = await _dBInterface.Read<ToDoEntity>(connectionString, table, userId, newTitle);
+          updatedEntity = await _dBInterface.Read(userId, newTitle);
         }
         else
         {
-          updatedEntity = await _dBInterface.Read<ToDoEntity>(connectionString, table, userId, title);
+          updatedEntity = await _dBInterface.Read(userId, title);
         }
 
         _logger.LogInformation("Successfully updated ToDoObject");

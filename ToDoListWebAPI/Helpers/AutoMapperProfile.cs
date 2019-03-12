@@ -15,7 +15,7 @@ namespace ToDoListWebAPI.Helpers
             CreateMap<UserDto, User>();
             CreateMap<RegisterUserRequest, User>();
             CreateMap<ToDoEntity, GetToDoObjectResponse>();
-            CreateMap<AddToDoObjectRequest, ToDoEntity>().ConstructUsing(x => new ToDoEntity(x.UserId, x.Title));
+            CreateMap<AddToDoObjectRequest, ToDoEntity>();
             CreateMap<AddToDoObjectResponse, ToDoEntity>();
         }
     }

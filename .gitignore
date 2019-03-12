@@ -3,3 +3,9 @@
 *.ide
 *.ide-shm
 *.ide-wal
+ToDoListWebAPI/obj/Debug/netcoreapp2.2/ToDoListWebAPI.pdb
+ToDoListWebAPI/obj/Debug/netcoreapp2.2/ToDoListWebAPI.dll
+ToDoListWebAPI/bin/Debug/netcoreapp2.2/ToDoListWebAPI.pdb
+.vs/ToDoListWebAPI/v15/Server/sqlite3/storage.ide
+.vs/ToDoListWebAPI/v15/Server/sqlite3/storage.ide-shm
+.vs/ToDoListWebAPI/v15/Server/sqlite3/storage.ide-wal

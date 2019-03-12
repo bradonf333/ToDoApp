@@ -28,14 +28,12 @@ namespace ToDoListWebAPI.Services.ToDo
     public async Task<ToDoEntity> GetToDoObject(GetToDoObjectRequest request)
     {
       ToDoEntity toDoEntity = null;
-      var connectionString = _configuration.GetConnectionString("MongoConnection");
-      var table = TableNames.todoobject.ToString();
       var userId = request.UserId;
       var title = request.Title;
 
       try
       {
-        toDoEntity = await _dBInterface.Read<ToDoEntity>(connectionString, table, userId, title);
+        toDoEntity = await _dBInterface.Read(userId, title);
 
         _logger.LogInformation("Successfully found ToDoObject");
       }

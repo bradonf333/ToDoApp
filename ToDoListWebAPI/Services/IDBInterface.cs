@@ -9,8 +9,7 @@ namespace ToDoListWebAPI.Services
     //Task<T> CreateAsync<T>(T entity);
     Task<T> CreateAsync<T>(ToDoEntity entity) where T : class;
 
-    Task<T> Read<T>(string connectionString, string tableName, string userId, string title)
-      where T : class;
+    Task<ToDoEntity> Read(string userId, string title);
 
     Task<List<T>> ReadAllByUserId<T>(string connectionString, string tableName, string partitionKey)
       where T : class;
