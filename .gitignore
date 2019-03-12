@@ -1,0 +1,5 @@
+*.pdb
+*.dll
+*.ide
+*.ide-shm
+*.ide-wal
