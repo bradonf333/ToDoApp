@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using ToDoListWebAPI.Models.EntityModels;
 using ToDoListWebAPI.Models.RequestModels;
 using ToDoListWebAPI.Models.ResponseModels;
-using ToDoListWebAPI.Services;
 using ToDoListWebAPI.Services.ToDo;
 
 namespace ToDoListWebAPI.Controllers
