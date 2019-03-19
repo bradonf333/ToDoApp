@@ -1,8 +1,7 @@
-using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using ToDoListWebAPI.Models;
+using System;
+using System.Threading.Tasks;
 using ToDoListWebAPI.Models.EntityModels;
 
 namespace ToDoListWebAPI.Services.ToDo
