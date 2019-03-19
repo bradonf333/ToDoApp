@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ToDo } from './Models/ToDo';
+import { config } from '../app.config';
+import { ToDo } from '../Models/ToDo';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,15 +19,11 @@ export class TodoService {
 
   getAllTodoForUser(username: string): Observable<ToDo[]> {
     return this.http.get<ToDo[]>(
-      `https://localhost:44318/api/ToDoObject/allTodoForUser?UserId=${username}`
+      `${config.todoWebApiUrl}/ToDoObject/allTodoForUser?UserId=${username}`
     );
   }
 
   addNewTodoForUser(todo: ToDo): Observable<ToDo> {
-    return this.http.post<ToDo>(
-      `https://localhost:44318/api/ToDoObject`,
-      todo,
-      httpOptions
-    );
+    return this.http.post<ToDo>(`${config.todoWebApiUrl}/ToDoObject`, todo, httpOptions);
   }
 }
