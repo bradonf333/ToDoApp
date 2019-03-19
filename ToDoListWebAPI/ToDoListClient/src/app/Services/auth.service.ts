@@ -12,7 +12,10 @@ export class AuthService {
 
   login(userId: string, password: string) {
     return this.http
-      .post<User>(`${config.todoWebApiUrl}/User/authenticate`, { userId, password })
+      .post<User>(`${config.todoWebApiUrl}/User/authenticate`, {
+        userId,
+        password
+      })
       .pipe(
         map(user => {
           // login successful if there's a jwt token in the response
@@ -20,7 +23,7 @@ export class AuthService {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(user));
           }
-
+          console.log(user);
           return user;
         })
       );

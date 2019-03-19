@@ -1,29 +1,85 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 import { AuthService } from '../Services/auth.service';
 
-export class LoginComponent {
-  form: FormGroup;
+@Component({
+  selector: 'app-login-component',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
+})
+export class LoginComponent implements OnInit {
+  userNameControl = new FormControl('', [Validators.required]);
+  passwordControl = new FormControl('', [Validators.required]);
+  hide = true;
+
+  userName: string;
+  password: string;
+
+  loading = false;
+  submitted = false;
+  returnUrl: string;
+  error = '';
 
   constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {
-    this.form = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
-    });
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit() {
+    // reset login status
+    this.authService.logout();
+
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/todo';
+    console.log(this.route.snapshot.queryParams);
+    this.returnUrl = '/todo';
   }
 
-  login() {
-    const val = this.form.value;
+  onSubmit() {
+    this.submitted = true;
 
-    if (val.email && val.password) {
-      this.authService.login(val.email, val.password).subscribe(() => {
-        console.log('User is logged in');
-        this.router.navigateByUrl('/');
-      });
+    this.userName = this.userNameControl.value;
+    this.password = this.passwordControl.value;
+
+    this.loading = true;
+    this.authService
+      .login(this.userName, this.password)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          this.error = error;
+          this.loading = false;
+        }
+      );
+  }
+
+  /** Get FormControl Error Messages */
+  getErrorMessage(validator: FormControl) {
+    if (validator.hasError('required')) {
+      return 'You must enter a value';
+    } else if (validator.hasError('maxlength')) {
+      return 'You have exceeded the Max Length';
+    } else if (validator.hasError('min') || validator.hasError('max')) {
+      return 'You must enter a number between 0 and 10';
+    } else {
+      return '';
+    }
+  }
+
+  disableButton() {
+    if (
+      this.userNameControl.hasError('required') ||
+      this.passwordControl.hasError('required')
+    ) {
+      return true;
+    } else {
+      return false;
     }
   }
 }

@@ -12,6 +12,6 @@ namespace ToDoListWebAPI.Models.RequestModels.Authentication
     public string LastName { get; set; }
     public string Password { get; set; }
     public UserRoles AccountRoles { get; set; }
-    public string EmailAddress { get; set; }
+    public string UserId { get; set; }
   }
 }
