@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { config } from '../app.config';
 import { ToDo } from '../Models/ToDo';
+import { User } from '../Models/User';
 import { TodoService } from '../Services/todo.service';
 
 @Component({
@@ -16,25 +18,26 @@ export class TodoAddComponent implements OnInit {
   priority: string;
 
   todo: ToDo;
+  currentUser: User;
 
   constructor(private todoService: TodoService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.currentUser = JSON.parse(localStorage.getItem(config.userKey));
+    this.userId = this.currentUser.userId;
+  }
 
   submitTodo() {
     this.todo = {
-      userId: this.userId,
+      userId: this.currentUser.userId,
       title: this.title,
       description: this.description,
       status: this.status,
       priority: this.priority
     };
 
-    console.log('Todo: ', this.todo);
-
     this.todoService.addNewTodoForUser(this.todo);
     // TODO: Need some logging here? Or is the logging done in the API?
     // Think its in the API on line 35 of AddToDoObjectService.
-    console.log('Hello');
   }
 }
