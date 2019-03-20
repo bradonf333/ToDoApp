@@ -11,8 +11,7 @@ namespace ToDoListWebAPI.Services
 
     Task<ToDoEntity> Read(string userId, string title);
 
-    Task<List<T>> ReadAllByUserId<T>(string connectionString, string tableName, string partitionKey)
-      where T : class;
+    Task<List<ToDoEntity>> ReadAllByUserId(string userId);
 
     Task Update<T>(string userId, string existingTitle, string description, string priority, string newTitle = null)
       where T : class;

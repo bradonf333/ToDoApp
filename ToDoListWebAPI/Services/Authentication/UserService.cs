@@ -46,7 +46,7 @@ namespace ToDoListWebAPI.Services.Authentication
 
       var user = await _userDbOperations.GetAsync(e => e.UserId == userId).ConfigureAwait(false);
 
-      // check if username exists
+      // check if userId exists
       if (user == null)
       {
         return null;
@@ -110,10 +110,10 @@ namespace ToDoListWebAPI.Services.Authentication
 
       if (userParam.UserId != user.UserId)
       {
-        // username has changed so check if the new username is already taken
+        // userId has changed so check if the new userId is already taken
         if ((await _userDbOperations.GetAllAsync(e => e.UserId == userParam.UserId)).Any())
         {
-          throw new AppException("Username " + userParam.UserId + " is already taken");
+          throw new AppException("UserId " + userParam.UserId + " is already taken");
         }
       }
 

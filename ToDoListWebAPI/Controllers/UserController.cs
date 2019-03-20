@@ -48,7 +48,7 @@ namespace ToDoListWebAPI.Controllers
 
             if (user == null)
             {
-              return BadRequest(new { message = "Username or password is incorrect" });
+              return BadRequest(new { message = "UserId or password is incorrect" });
             }
 
             var tokenHandler = new JwtSecurityTokenHandler();

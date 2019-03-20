@@ -30,8 +30,11 @@ export class TodoAddComponent implements OnInit {
       priority: this.priority
     };
 
+    console.log('Todo: ', this.todo);
+
     this.todoService.addNewTodoForUser(this.todo);
     // TODO: Need some logging here? Or is the logging done in the API?
     // Think its in the API on line 35 of AddToDoObjectService.
+    console.log('Hello');
   }
 }

@@ -1,12 +1,6 @@
 <div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <div class="example-container">
-    <mat-form-field>
-      <input [(ngModel)]="userId" matInput placeholder="UserId">
-    </mat-form-field>
-    <button color="primary" style="margin-left:20px;" mat-raised-button (click)='getTodos()'>Get Todo List</button>
-  </div>
-  <mat-grid-list cols="2" rowHeight="350px">
+  <h1 class="mat-h1">Hello {{ currentUser.firstName }}</h1>
+  <mat-grid-list cols="2" rowHeight="350px" *ngIf="todos?.length > 0">
     <mat-grid-tile *ngFor="let todo of todos" [colspan]="1" [rowspan]="1">
       <mat-card class="dashboard-card">
         <mat-card-header>
@@ -16,8 +10,12 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Edit</button>
-              <button mat-menu-item [routerLink]="['/todo-delete']">Delete</button>
+              <button mat-menu-item>
+                <mat-icon>edit</mat-icon>Edit
+              </button>
+              <button mat-menu-item [routerLink]="['/todo-delete']">
+                <mat-icon>delete</mat-icon>Delete
+              </button>
             </mat-menu>
           </mat-card-title>
         </mat-card-header>
@@ -29,5 +27,11 @@
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="2" rowHeight="350px" *ngIf="todos?.length <= 0">
+    <p>Sorry it looks like you don't have any Todos. Create one?</p>
+    <div class="example-button-row">
+      <button mat-raised-button color="primary" [routerLink]="['/todo-new']">New To-Do</button>
+    </div>
   </mat-grid-list>
 </div>

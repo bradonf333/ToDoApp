@@ -10,11 +10,11 @@ import { AuthService } from '../Services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  userNameControl = new FormControl('', [Validators.required]);
+  userIdControl = new FormControl('', [Validators.required]);
   passwordControl = new FormControl('', [Validators.required]);
   hide = true;
 
-  userName: string;
+  userId: string;
   password: string;
 
   loading = false;
@@ -41,12 +41,12 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    this.userName = this.userNameControl.value;
+    this.userId = this.userIdControl.value;
     this.password = this.passwordControl.value;
 
     this.loading = true;
     this.authService
-      .login(this.userName, this.password)
+      .login(this.userId, this.password)
       .pipe(first())
       .subscribe(
         data => {
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
 
   disableButton() {
     if (
-      this.userNameControl.hasError('required') ||
+      this.userIdControl.hasError('required') ||
       this.passwordControl.hasError('required')
     ) {
       return true;

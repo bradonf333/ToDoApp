@@ -17,13 +17,19 @@ const httpOptions = {
 export class TodoService {
   constructor(private http: HttpClient) {}
 
-  getAllTodoForUser(username: string): Observable<ToDo[]> {
-    return this.http.get<ToDo[]>(
-      `${config.todoWebApiUrl}/ToDoObject/allTodoForUser?UserId=${username}`
-    );
+  getAllTodoForUser(userId: string): Observable<ToDo[]> {
+    const result = this.http.get<ToDo[]>(
+      `${config.todoWebApiUrl}/ToDoObject/allTodoForUser?UserId=${userId}`
+    ); // TODO: Should this be in config obj?
+
+    return result;
   }
 
-  addNewTodoForUser(todo: ToDo): Observable<ToDo> {
-    return this.http.post<ToDo>(`${config.todoWebApiUrl}/ToDoObject`, todo, httpOptions);
+  addNewTodoForUser(todo: ToDo) {
+    this.http
+      .post<ToDo>(`${config.todoWebApiUrl}/ToDoObject`, todo, httpOptions)
+      .subscribe(data => console.log(data));
+
+    // return this.http.post<ToDo>(`${config.todoWebApiUrl}/ToDoObject`, todo, httpOptions);
   }
 }

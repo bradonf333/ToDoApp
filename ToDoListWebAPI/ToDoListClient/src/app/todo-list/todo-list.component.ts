@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { config } from '../app.config';
 import { ToDo } from '../Models/ToDo';
+import { User } from '../Models/User';
 import { TodoService } from '../Services/todo.service';
 
 @Component({
@@ -7,17 +9,21 @@ import { TodoService } from '../Services/todo.service';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css']
 })
-export class TodoListComponent {
+export class TodoListComponent implements OnInit {
   todos: ToDo[];
   userId: string;
 
   constructor(private todoService: TodoService) {}
 
-  getTodos() {
-    console.log(this.userId);
-    this.todoService.getAllTodoForUser(this.userId).subscribe(data => {
+  currentUser: User;
+
+  ngOnInit() {
+    this.currentUser = JSON.parse(localStorage.getItem(config.userKey));
+
+    this.todoService.getAllTodoForUser(this.currentUser.userId).subscribe(data => {
       this.todos = data;
-      console.log(data);
+      console.log('Data: ', data);
+      console.log('Todos: ', this.todos);
     });
   }
 }

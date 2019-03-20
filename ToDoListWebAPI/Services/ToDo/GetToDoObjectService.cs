@@ -48,12 +48,10 @@ namespace ToDoListWebAPI.Services.ToDo
     public async Task<List<ToDoEntity>> GetAllToDoObjectsForUser(string userId)
     {
       List<ToDoEntity> toDoObjects = null;
-      var connectionString = _configuration.GetConnectionString("MongoConnection");
-      var table = TableNames.todoobject.ToString();
-
+      
       try
       {
-        toDoObjects = await _dBInterface.ReadAllByUserId<ToDoEntity>(connectionString, table, userId);
+        toDoObjects = await _dBInterface.ReadAllByUserId(userId);
       }
       catch (Exception ex)
       {

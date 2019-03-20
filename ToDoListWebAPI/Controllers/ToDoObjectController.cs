@@ -40,7 +40,7 @@ namespace ToDoListWebAPI.Controllers
     [HttpGet("allTodoForUser")]
     public async Task<IEnumerable<GetToDoObjectResponse>> GetAllForUser(GetAllToDoEntityRequest request)
     {
-      var result = await _getToDoObjectService.GetAllToDoObjectsForUser(request.UserId);
+    var result = await _getToDoObjectService.GetAllToDoObjectsForUser(request.UserId);
 
       return _mapper.Map<List<ToDoEntity>, List<GetToDoObjectResponse>>(result);
     }

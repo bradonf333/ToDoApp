@@ -63,27 +63,11 @@ namespace ToDoListWebAPI.Services
       return null;
     }
 
-    public async Task<List<T>> ReadAllByUserId<T>(string connectionString, string table, string userId)
-      where T : class
+    public async Task<List<ToDoEntity>> ReadAllByUserId(string userId)
     {
-      var client = new MongoClient(connectionString);
-      var database = client.GetDatabase(table);
-
-      /*
-       * TODO: I don't like the collection name but what is the best way to change that?
-       * ToDoListWebAPI.Models.EntityModels.ToDoEntity.
-       */
-      
-      var collectionName = CollectionName.todo.ToString();
-
-      // var collectionName = typeof(T).ToString();
-
-      var collection = database.GetCollection<T>(collectionName);
-      var filter = Builders<T>.Filter.Eq("UserId", userId);
-
       try
       {
-        var result = await collection.FindAsync<T>(filter).Result.ToListAsync();
+        var result = await _userDbOperations.GetAllAsync(e => e.UserId == userId).ConfigureAwait(false);
         return result;
       }
       catch (Exception e)
