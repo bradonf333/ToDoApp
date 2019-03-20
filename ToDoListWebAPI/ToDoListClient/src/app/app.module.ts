@@ -20,16 +20,17 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { JwtModule } from '@auth0/angular-jwt';
 /* My Modules/Components */
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './main-layout/header/header.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { MenuComponent } from './main-layout/menu/menu.component';
 import { TodoAddComponent } from './todo-add/todo-add.component';
-import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoDeleteComponent } from './todo-delete/todo-delete.component';
-import { LoginComponent } from './login/login.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { LoginComponent } from './login/login.component';
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
-    MatSelectModule
+    MatSelectModule,
+    JwtModule
   ],
   providers: [],
   bootstrap: [AppComponent]

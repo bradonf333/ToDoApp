@@ -1,4 +1,4 @@
-<div class="grid-container">
+<div class="grid-container" *ngIf="currentUser">
   <h1 class="mat-h1">Hello {{ currentUser.firstName }}</h1>
   <mat-grid-list cols="2" rowHeight="350px" *ngIf="todos?.length > 0">
     <mat-grid-tile *ngFor="let todo of todos" [colspan]="1" [rowspan]="1">

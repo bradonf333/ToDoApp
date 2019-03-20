@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { map } from 'rxjs/operators';
 import { config } from '../app.config';
 import { User } from '../Models/User';
@@ -8,6 +9,7 @@ import { User } from '../Models/User';
   providedIn: 'root'
 })
 export class AuthService {
+  jwtHelper = new JwtHelperService();
   constructor(private http: HttpClient) {}
 
   login(userId: string, password: string) {
@@ -27,6 +29,13 @@ export class AuthService {
           return user;
         })
       );
+  }
+
+  public isAuthenticated(): boolean {
+    const token = localStorage.getItem(config.userKey);
+    // Check whether the token is expired and return
+    // true or false
+    return !this.jwtHelper.isTokenExpired(token);
   }
 
   logout() {
