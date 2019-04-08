@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using ToDoListWebAPI.Models.EntityModels;
 using ToDoListWebAPI.Models.RequestModels;
 using ToDoListWebAPI.Models.ResponseModels;
@@ -10,6 +11,7 @@ using ToDoListWebAPI.Services.ToDo;
 
 namespace ToDoListWebAPI.Controllers
 {
+  [Authorize]
   [Route("api/ToDoObject")]
   public class ToDoObjectController : Controller
   {
