@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { timer } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { AuthService } from '../Services/auth.service';
 
@@ -20,7 +22,11 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
-  error = '';
+  error: HttpErrorResponse;
+
+  timeLeft = 5;
+  interval;
+  subscribeTimer: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -55,6 +61,7 @@ export class LoginComponent implements OnInit {
         error => {
           this.error = error;
           this.loading = false;
+          console.log('Error Details: ', this.error.error.message);
         }
       );
   }
@@ -81,5 +88,14 @@ export class LoginComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  oberserableTimer() {
+    const source = timer(1000, 2000);
+    const abc = source.subscribe(val => {
+      console.log(val, '-');
+      this.subscribeTimer = this.timeLeft - val;
+    });
+    console.log('Done');
   }
 }

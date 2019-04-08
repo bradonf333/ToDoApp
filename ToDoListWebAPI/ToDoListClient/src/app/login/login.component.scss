@@ -7,3 +7,12 @@
 .example-container>* {
   width: 25%;
 }
+
+.example-button-row button,
+.example-button-row a {
+  margin: 8px 8px 0px 0px;
+}
+
+mat-error {
+  margin-bottom: 8px;
+}

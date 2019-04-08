@@ -12,8 +12,11 @@
     <mat-error *ngIf="passwordControl.invalid">{{getErrorMessage(passwordControl)}}</mat-error>
   </mat-form-field>
 
+  <mat-error *ngIf="error?.error.message">{{error.error.message}}</mat-error>
+
   <div class="example-button-row">
     <button mat-raised-button color="primary" [disabled]="disableButton()" (click)="onSubmit()">Login</button>
+    <button mat-stroked-button color="" [routerLink]="['/login']">Sign Up</button>
   </div>
 
 </div>

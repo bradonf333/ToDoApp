@@ -31,6 +31,7 @@ import { MenuComponent } from './main-layout/menu/menu.component';
 import { TodoAddComponent } from './todo-add/todo-add.component';
 import { TodoDeleteComponent } from './todo-delete/todo-delete.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { TodoListComponent } from './todo-list/todo-list.component';
     TodoListComponent,
     TodoAddComponent,
     TodoDeleteComponent,
-    LoginComponent
+    LoginComponent,
+    CreateAccountComponent
   ],
   imports: [
     FormsModule,
