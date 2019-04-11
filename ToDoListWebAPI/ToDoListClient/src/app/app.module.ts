@@ -32,6 +32,7 @@ import { TodoAddComponent } from './todo-add/todo-add.component';
 import { TodoDeleteComponent } from './todo-delete/todo-delete.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { JwtInterceptorComponent } from './Helpers/jwt-interceptor/jwt-interceptor.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     TodoAddComponent,
     TodoDeleteComponent,
     LoginComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    JwtInterceptorComponent
   ],
   imports: [
     FormsModule,
