@@ -8,10 +8,16 @@
 
 .sidenav .mat-toolbar {
   background: inherit;
+  flex: 1 1 auto;
 }
 
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
   z-index: 1;
+  flex: 1 1 auto;
+}
+
+.mat-toolbar * {
+  flex: 1 1 auto;
 }

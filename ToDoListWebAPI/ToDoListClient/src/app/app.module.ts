@@ -1,6 +1,6 @@
 /* Angular Modules */
 import { LayoutModule } from '@angular/cdk/layout';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 /* Angular Material */
@@ -24,6 +24,8 @@ import { JwtModule } from '@auth0/angular-jwt';
 /* My Modules/Components */
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
+import { JwtInterceptor } from './Helpers/jwt-interceptor/jwt-interceptor';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './main-layout/header/header.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
@@ -31,8 +33,6 @@ import { MenuComponent } from './main-layout/menu/menu.component';
 import { TodoAddComponent } from './todo-add/todo-add.component';
 import { TodoDeleteComponent } from './todo-delete/todo-delete.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
-import { CreateAccountComponent } from './create-account/create-account.component';
-import { JwtInterceptorComponent } from './Helpers/jwt-interceptor/jwt-interceptor.component';
 
 @NgModule({
   declarations: [
@@ -44,8 +44,7 @@ import { JwtInterceptorComponent } from './Helpers/jwt-interceptor/jwt-intercept
     TodoAddComponent,
     TodoDeleteComponent,
     LoginComponent,
-    CreateAccountComponent,
-    JwtInterceptorComponent
+    CreateAccountComponent
   ],
   imports: [
     FormsModule,
@@ -69,7 +68,7 @@ import { JwtInterceptorComponent } from './Helpers/jwt-interceptor/jwt-intercept
     MatSelectModule,
     JwtModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

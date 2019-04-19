@@ -1,3 +1,11 @@
-<h1>{{title}}</h1>
+<mat-toolbar-row>
+  <h1>{{title}}</h1>
+  <span class="example-spacer"></span>
+  <div *ngIf='currentUser'>
+    <button mat-button (click)='logout()'>Logout</button>
+  </div>
 
-<button mat-button [routerLink]=" ['./logout'] ">Logout!</button>
+  <div *ngIf='!currentUser'>
+    <button mat-button (click)='logout()'>Login</button>
+  </div>
+</mat-toolbar-row>
