@@ -18,6 +18,6 @@ steps:
   inputs:
     command: 'restore'
     selectOrConfig: 'config'
-    nugetConfigPath: 'NuGet.config'
+    nugetConfigPath: 'SolutionItems/NuGet.config'
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
