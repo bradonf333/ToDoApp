@@ -20,7 +20,7 @@ export class TodoService {
   getAllTodoForUser(userId: string): Observable<ToDo[]> {
     const result = this.http.get<ToDo[]>(
       `${config.todoWebApiUrl}/ToDoObject/allTodoForUser?UserId=${userId}`
-    ); // TODO: Should this be in config obj?
+    );
 
     return result;
   }

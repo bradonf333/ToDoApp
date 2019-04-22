@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authService: AuthService
   ) {
-    // TODO: redirect to home if already logged in
+    // TODO: redirect to home if already logged in or just re-route them to the ToDoList
     // if (this.authenticationService.currentUserValue) {
     //   this.router.navigate(['/']);
     // }
