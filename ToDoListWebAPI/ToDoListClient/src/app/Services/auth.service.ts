@@ -1,10 +1,18 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { config } from '../app.config';
 import { User } from '../Models/User';
+import { UserRequest } from '../Models/UserRequest';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: 'my-auth-token'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +50,14 @@ export class AuthService {
           return user;
         })
       );
+  }
+
+  register(user: UserRequest) {
+    return this.http.post<UserRequest>(
+      `${config.todoWebApiUrl}/User/register`,
+      user,
+      httpOptions
+    );
   }
 
   public isAuthenticated(): boolean {

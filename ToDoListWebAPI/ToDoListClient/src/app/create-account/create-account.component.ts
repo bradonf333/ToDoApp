@@ -1,6 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
+import { UserRequest } from '../Models/UserRequest';
+import { AuthService } from '../Services/auth.service';
 
 @Component({
   selector: 'app-create-account',
@@ -14,14 +19,27 @@ export class CreateAccountComponent implements OnInit {
   lastNameControl = new FormControl('', [Validators.required]);
   hide = true;
 
+  newUser: UserRequest;
+
   userId: string;
   password: string;
   firstName: string;
   lastName: string;
+
   error: HttpErrorResponse;
-  constructor() {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit() {}
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, null, {
+      duration: 2000
+    });
+  }
 
   /** Get FormControl Error Messages */
   getErrorMessage(validator: FormControl) {
@@ -34,5 +52,33 @@ export class CreateAccountComponent implements OnInit {
     } else {
       return '';
     }
+  }
+
+  onSubmit() {
+    this.newUser = {
+      firstName: this.firstName,
+      lastName: this.lastName,
+      userId: this.userId,
+      password: this.password,
+      accountRoles: 0
+    };
+
+    // this.authService.register(this.newUser).subscribe(data => console.log(data));
+    console.log('New User', this.newUser);
+    this.authService
+      .register(this.newUser)
+      .pipe(first())
+      .subscribe(
+        data => {
+          console.log(data);
+        },
+        error => {
+          this.error = error;
+          console.log('Error Details: ', this.error.error.message);
+        }
+      );
+
+    this.openSnackBar('Registration Successful, please Login!');
+    this.router.navigateByUrl('/login');
   }
 }
