@@ -18,7 +18,9 @@ export class TodoListComponent implements OnInit {
   currentUser: User;
 
   ngOnInit() {
+    console.log('Current User: ', this.currentUser);
     this.currentUser = JSON.parse(localStorage.getItem(config.userKey));
+    console.log('Current User: ', this.currentUser);
 
     this.todoService.getAllTodoForUser(this.currentUser.userId).subscribe(data => {
       this.todos = data;

@@ -48,7 +48,7 @@ namespace ToDoListWebAPI.Services.ToDo
     public async Task<List<ToDoEntity>> GetAllToDoObjectsForUser(string userId)
     {
       List<ToDoEntity> toDoObjects = null;
-      
+
       try
       {
         toDoObjects = await _dBInterface.ReadAllByUserId(userId);

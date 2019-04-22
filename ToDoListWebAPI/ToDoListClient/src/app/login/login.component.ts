@@ -28,6 +28,8 @@ export class LoginComponent implements OnInit {
   interval;
   subscribeTimer: any;
 
+  isAuthenticated: boolean;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -39,6 +41,7 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/todo';
     console.log(this.route.snapshot.queryParams);
     this.returnUrl = '/todo';
+    this.isAuthenticated = this.authService.isAuthenticated();
   }
 
   onSubmit() {

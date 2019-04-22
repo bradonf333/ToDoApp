@@ -1,4 +1,14 @@
-<div class="example-container">
+<div class="example-container" *ngIf='isAuthenticated'>
+  <mat-card class="dashboard-card">
+    <mat-card-header>
+      <mat-card-title>
+        You are already logged in!
+      </mat-card-title>
+    </mat-card-header>
+  </mat-card>
+</div>
+
+<div class="example-container" *ngIf='!isAuthenticated'>
 
   <mat-form-field>
     <input matInput placeholder="UserId" [(ngModel)]="userId" [formControl]="userIdControl">

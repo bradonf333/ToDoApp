@@ -6,8 +6,8 @@
   </mat-form-field>
 
   <mat-form-field>
-   <input matInput placeholder="Last Name" [(ngModel)]="lastName" [formControl]="lastNameControl">
-   <mat-error *ngIf="lastNameControl.invalid">{{getErrorMessage(lastNameControl)}}</mat-error>
+    <input matInput placeholder="Last Name" [(ngModel)]="lastName" [formControl]="lastNameControl">
+    <mat-error *ngIf="lastNameControl.invalid">{{getErrorMessage(lastNameControl)}}</mat-error>
   </mat-form-field>
 
   <mat-form-field>

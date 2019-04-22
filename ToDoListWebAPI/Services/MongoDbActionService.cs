@@ -84,7 +84,7 @@ namespace ToDoListWebAPI.Services
       var collectionName = CollectionName.todo.ToString();
       var collection = _db.GetCollection<ToDoEntity>(collectionName);
 
-      var filter = Builders<ToDoEntity>.Filter.Eq("UserId", userId) 
+      var filter = Builders<ToDoEntity>.Filter.Eq("UserId", userId)
                    & Builders<ToDoEntity>.Filter.Eq("Title", existingTitle);
 
       // Initialize this update statement with a field required in order to even find the object.
@@ -129,7 +129,7 @@ namespace ToDoListWebAPI.Services
       var collectionName = CollectionName.todo.ToString();
       var collection = database.GetCollection<T>(collectionName);
 
-      var filter = Builders<T>.Filter.Eq("UserId", userId) 
+      var filter = Builders<T>.Filter.Eq("UserId", userId)
                    & Builders<T>.Filter.Eq("Title", title);
 
       try

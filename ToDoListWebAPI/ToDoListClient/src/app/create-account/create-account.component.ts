@@ -16,6 +16,8 @@ export class CreateAccountComponent implements OnInit {
 
   userId: string;
   password: string;
+  firstName: string;
+  lastName: string;
   error: HttpErrorResponse;
   constructor() {}
 

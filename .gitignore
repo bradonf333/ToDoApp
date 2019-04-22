@@ -27,3 +27,5 @@ ToDoListWebAPI/bin/Debug/netcoreapp2.2/ToDoListWebAPI.dll
 ToDoListWebAPI/bin/Debug/netcoreapp2.2/ToDoListWebAPI.pdb
 .vs/ToDoListWebAPI/v16/Server/sqlite3/db.lock
 ToDoListWebAPI/obj/Debug/netcoreapp2.2/ToDoListWebAPI.pdb
+*.dtbcache
+*.dll
