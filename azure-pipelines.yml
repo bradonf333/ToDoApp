@@ -4,6 +4,8 @@
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
+# Branch in git we are going to target.
+
 trigger:
 - master
 
@@ -13,6 +15,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
+# @ specifies the version number. so @2 = version 2.
 steps:
 - task: DotNetCoreCLI@2
   inputs:
